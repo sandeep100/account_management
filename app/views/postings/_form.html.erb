@@ -1,0 +1,15 @@
+<fieldset id="posting_<%=@row_id%>">
+  <%= fields_for 'postings[]', @posting do |f| %>
+    <div>
+      <%= f.label :account_id, 'Select Account' %>
+      <%= f.select :account_id, Account.all.collect {|acc| [ acc.name.capitalize, acc.id ] }, include_blank: true %>
+    </div>
+    <div>
+      <%= f.label :amount %>
+      <%= f.text_field :amount %>
+    </div>
+  <% end %>
+  <% if @row_id != 0 %>
+    <%= link_to 'Remove', '', id: 'remove_posting', row_id: @row_id %>
+  <% end %>
+</fieldset>

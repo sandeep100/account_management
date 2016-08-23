@@ -1,0 +1,24 @@
+<h1>Transaction Details</h1>
+
+<div>
+  <%= link_to '<< Back', transactions_path %>
+</div>
+
+<% postings = @transaction.postings %>
+
+<% if @transaction.present? %>
+  <table border="1" cellpadding="5" cellspacing="1">
+    <tr>
+      <th>Posting Id</th>
+      <th>Account</th>
+      <th>Amount</th>
+    </tr>
+    <% postings.each do |p| %>
+      <tr>
+        <td><%= p.id %></td>
+        <td><%= p.account.name %></td>
+        <td><%= p.amount %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

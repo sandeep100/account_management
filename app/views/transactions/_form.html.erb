@@ -1,0 +1,20 @@
+<%= form_for @transaction do |f| %>
+  <%= f.hidden_field :transaction_date, value: Time.now %>
+
+  <fieldset>
+    <legend>Postings</legend>
+    <div id='postings'></div>
+
+    <div>
+      <%= link_to 'Add New Posting', '', id: 'add_new_posting', row_id: 0 %>
+    </div>
+  </fieldset>
+
+  <div>
+    <%= f.label :comment, 'Comment' %>
+    <%= f.text_area :comment %>
+  </div>
+
+  <%= f.submit %>
+  <%= link_to 'Cancel', root_path %>
+<% end %>

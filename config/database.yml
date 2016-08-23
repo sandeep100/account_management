@@ -1,0 +1,14 @@
+
+development:
+  adapter: mysql
+  database: account_development
+  username: root
+  password:
+  host: localhost
+
+test:
+  adapter: mysql
+  database: account_test
+  username: root
+  password:
+  host: localhost

@@ -1,0 +1,59 @@
+<h1>New Transaction</h1>
+
+<div>
+  <%= link_to 'All Transactions', root_path %>
+</div>
+
+<% if @errors.present? %>
+  <span style="color: red;">Please correct the following errors:</span>
+  <ul style="color: red;">
+    <% @errors.each do |error_message| %>
+      <li><%= error_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>
+
+<%= hidden_field_tag :errors_present, @errors.present? %>
+<%= params[:postings] %>
+<%= hidden_field_tag :postings_data, params[:postings].present? ? params[:postings].collect{|e| [e[:account_id],e[:amount]]}.flatten.join(',') : '' %>
+<%= hidden_field_tag :posting_url, new_posting_path %>
+
+<script type="text/javascript">
+  var addPosting = function(state, row_id) {
+    row_id = row_id == undefined ? 0 : parseInt(row_id);
+    $.get($('#posting_url').val(), {row_id: row_id}, function(data) {
+      if(state=='new') {
+        $('#postings').html(data);
+      } else {
+        $('#postings').append(data);
+      }
+      $('#add_new_posting').attr('row_id', row_id + 1);
+    }, 'html');
+  }
+
+  var removePosting = function(row_id) {
+    row_id = parseInt(row_id);
+    $('#posting_'+row_id).remove();
+  }
+
+  $(document).ready(function() {
+    var errors_present = $('#errors_present').val();
+    if(errors_present=='true') {
+      console.log($('#postings_data').val());
+    } else {
+      addPosting('new');
+    }
+
+    $('#add_new_posting').click(function(e) {
+      e.preventDefault();
+      addPosting('add', $(this).attr('row_id'));
+    });
+
+    $('body').on('click', '#remove_posting', function(e) {
+      e.preventDefault();
+      removePosting($(this).attr('row_id'));
+    });
+  });
+</script>
