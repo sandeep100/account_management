@@ -35,12 +35,7 @@ class TransactionsController < ApplicationController
     if @errors.any?
       render :new
     else
-      transaction = Transaction.find_by_id(@transaction.id)
-      if @transaction.present?
-        posting = Posting.where(transaction_id: "#{@transaction.id}")
-        transaction.amount =  posting.sum(:amount).to_f
-        transaction.save
-      end
+      @transaction.create_transaction_amount(@transaction.id)
       redirect_to transactions_path
     end
   end
