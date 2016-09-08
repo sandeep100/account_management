@@ -20,7 +20,10 @@ class TransactionsController < ApplicationController
     @errors = @errors + @transaction.errors.full_messages if @transaction.errors.any?
 
     # create postings
+
     params[:postings].each do |hash|
+    # binding.pry
+
       posting = Posting.create(
         account_id: hash[:account_id],
         transaction_id: @transaction.id,
@@ -32,6 +35,12 @@ class TransactionsController < ApplicationController
     if @errors.any?
       render :new
     else
+      transaction = Transaction.find_by_id(@transaction.id)
+      if @transaction.present?
+        posting = Posting.where(transaction_id: "#{@transaction.id}")
+        transaction.amount =  posting.sum(:amount).to_f
+        transaction.save
+      end
       redirect_to transactions_path
     end
   end

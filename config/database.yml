@@ -3,12 +3,12 @@ development:
   adapter: mysql
   database: account_development
   username: root
-  password:
+  password: root
   host: localhost
 
 test:
   adapter: mysql
   database: account_test
   username: root
-  password:
+  password: root
   host: localhost

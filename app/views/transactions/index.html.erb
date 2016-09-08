@@ -10,6 +10,7 @@
       <th>Id</th>
       <th>Transaction Date</th>
       <th>Comments</th>
+      <th>Total Amount</th>
       <th>Action</th>
     </tr>
     <% @transactions.each do |t| %>
@@ -17,6 +18,7 @@
         <td><%= t.id %></td>
         <td><%= t.transaction_date %></td>
         <td><%= t.comment %></td>
+        <td><%= t.amount %></td>
         <td><%= link_to 'Details', transaction_path(id: t.id) %></td>
       </tr>
     <% end %>

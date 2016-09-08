@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20160818111256) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
+    t.float    "amout"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160818111256) do
   create_table "transactions", force: true do |t|
     t.datetime "transaction_date"
     t.text     "comment"
+    t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
