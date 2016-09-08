@@ -1,0 +1,4 @@
+one_trans:
+  transaction_date: "2016-05-16 04:43:20"
+  comment: this is first comment for test
+  amount: 200
