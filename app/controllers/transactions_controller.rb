@@ -18,12 +18,9 @@ class TransactionsController < ApplicationController
     )
 
     @errors = @errors + @transaction.errors.full_messages if @transaction.errors.any?
-
     # create postings
-
+    
     params[:postings].each do |hash|
-    # binding.pry
-
       posting = Posting.create(
         account_id: hash[:account_id],
         transaction_id: @transaction.id,

@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.8'
-gem 'pry-rails', :group => :development
-
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'mysql'
@@ -37,7 +35,8 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers',:require => false
-
+  gem 'faker'
+  gem 'factory_girl_rails'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
