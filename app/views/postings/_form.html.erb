@@ -2,11 +2,11 @@
   <%= fields_for 'postings[]', @posting do |f| %>
     <div>
       <%= f.label :account_id, 'Select Account' %>
-      <%= f.select :account_id, Account.all.collect {|acc| [ acc.name.capitalize, acc.id ] }, include_blank: true %>
+      <%= f.select :account_id, Account.all.collect {|acc| [ acc.name.capitalize, acc.id ] }, include_blank: false%>
     </div>
     <div>
       <%= f.label :amount %>
-      <%= f.text_field :amount %>
+      <%= f.number_field :amount, required: true %>
     </div>
   <% end %>
   <% if @row_id != 0 %>
